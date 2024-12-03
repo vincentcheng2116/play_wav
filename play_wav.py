@@ -1,6 +1,7 @@
 import sounddevice as sd
 import soundfile as sf
-
+#  syntax  :     paly_wav "wav_file_path" [d:UAC device name]
+ 
 # Function to list available audio devices
 def list_audio_devices(**kwargs):
     DUT_output_name = kwargs.get("DUT_output_name", "BEHRINGER")
