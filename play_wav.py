@@ -42,10 +42,12 @@ def list_audio_devices(**kwargs):
             print(f"{idx}: DirectSound Input")
             DUT_input_idx = idx
             
+            
         # Check for DirectSound output devices
         if (device['hostapi'] == 1) and (device['max_output_channels'] > 1) and (DUT_output_name in device['name']):
             print(f"{idx}: DirectSound Output")
             DUT_output_idx = idx
+            break
 
     return DUT_output_idx, DUT_input_idx  # Return the selected indices
 

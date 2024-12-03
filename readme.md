@@ -1,4 +1,5 @@
 # play_wav
+## 可以指定 device, 播放 wav file. 
 ## parameter
 | parameter | example | remark |
 |---|---|---|
