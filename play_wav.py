@@ -1,6 +1,22 @@
 import sounddevice as sd
 import soundfile as sf
-#  syntax  :     paly_wav "wav_file_path" [d:UAC device name]
+import sys
+#  syntax  :     paly_wav "f:wav_file_path" [d:UAC device name] [v:volume in %]
+
+wav_file_path1=""
+n = len(sys.argv)
+for p0 in range(1, n):   # skip first exe name
+    s = sys.argv[p0]
+    print(s)
+    colon_index = s.index(':')
+    s0 = s[:colon_index]
+    if s0 == "f" or s0 == 'F':  # show,save image or not
+        wav_file_path1=  s[colon_index + 1:]
+        print(f"file name: {wav_file_path1}")
+    if s0 == "d" or s0 == 'D':   # device name
+        device_name = s[colon_index + 1:]
+        print("UAC Out device name: ", device_name)
+
  
 # Function to list available audio devices
 def list_audio_devices(**kwargs):
@@ -41,9 +57,10 @@ def play_wav_file(file_path, device_id):
 # Main execution
 if __name__ == "__main__":
     # List all available audio devices and get selected indices with custom names
-    selected_device_id_out, selected_device_id_in = list_audio_devices(DUT_output_name="BEHRINGER", DUT_input_name="BEHRINGER")
-    
-    wav_file_path = 'noise0.8.wav'  # Path to your WAV file
+    selected_device_id_out, selected_device_id_in = list_audio_devices(DUT_output_name=device_name, DUT_input_name="BEHRINGER")
+    wav_file_path=wav_file_path1
+    if wav_file_path=='' :
+        wav_file_path = 'noise0.8.wav'  # Path to your WAV file
     
     # Play the WAV file using the selected output device if it was found
     if selected_device_id_out is not None:
